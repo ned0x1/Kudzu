@@ -19,8 +19,6 @@ netexec smb targets.txt -u users.txt -p wordlist.txt --continue-on-success
 ## Install
 
 ```bash
-pipx install kudzu
-# or, from source:
 git clone https://github.com/ned0x1/kudzu.git && cd kudzu && pip install -e .
 ```
 
@@ -29,7 +27,7 @@ Requires Python 3.10+. `gpg` on PATH if you want encrypted storage.
 ## Commands
 
 ### `kudzu add <password>`
-Stores a password. `--tag` labels where it came from. `--rules` decides whether `create-list` will mutate it — without `--rules` the password is still stored and still ends up in the final wordlist, just untouched.
+Stores a password. `--tag` labels where it came from. `--rules` decides whether `create-list` will mutate it | without `--rules` the password is still stored and still ends up in the final wordlist, just untouched.
 
 ```bash
 kudzu add "Welcome2024" --tag ldap --rules
@@ -54,7 +52,7 @@ kudzu remove --password "Welcome2024"
 kudzu remove --tag "mail jdupont"
 ```
 
-### `kudzu clear --yes`
+### `kudzu clear`
 Wipes the store.
 
 ### `kudzu import <file>`
@@ -81,17 +79,17 @@ The year/digit-range results are always kept in full; only the case/leet/symbol 
 
 ## Storage
 
-`~/.kudzu/password/list.txt` — one password per line, tab-separated: `password, tag, timestamp, rules-flag`. Plaintext by default.
+`~/.kudzu/password/list.txt` | one password per line, tab-separated: `password, tag, timestamp, rules-flag`. Plaintext by default.
 
 Set `storage.encryption: gpg` in the config to encrypt it (prompts for a passphrase on every read/write, no plaintext left on disk, requires the `gpg` binary).
 
 ## Good practice
 
-- Spray one password across many accounts rather than brute-forcing one account — far less likely to trigger a lockout.
+- Spray one password across many accounts rather than brute-forcing one account | far less likely to trigger a lockout.
 - Check the target's lockout policy first and leave headroom under the bad-attempt counter.
-- Keep `--rules` for passwords with a human pattern; leave it off for random/high-entropy ones — mutating those just adds noise.
+- Keep `--rules` for passwords with a human pattern; leave it off for random/high-entropy ones | mutating those just adds noise.
 - Use this only on engagements you're authorized to test.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT | see [LICENSE](LICENSE).
